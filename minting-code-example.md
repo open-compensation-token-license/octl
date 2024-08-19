@@ -44,7 +44,7 @@ OCTL Project Donation Royalty address (ArbitriumOne/Ethereum mainnet):
 Will be announced soon.
   
 
-# Contract reacability
+# Contract reachability
 The OCTL can be reached for testing in different networks.
 
 ## Testing/Sepolina
