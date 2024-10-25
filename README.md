@@ -37,7 +37,9 @@ OCTL Project Donation Royalty address (ArbitriumOne/Ethereum mainnet):
 0xf9f943202809545CDd8dcD95b8bBb314f7f8ee85
 
 ## OCTL puzzle pieces as NFTs
-Following the famous "the whole is greater than the sum of its parts" phrase we want to encourage you to buy unique puzzles to support the OCTL development. This gives you the chance to own a unique piece of art inspired and powered by the OCTL. Therefore we've created the website https://nftpuzzle.license-token.com/. Feel free to puzzle to support the OCTL but kindly note that each puzzle piece is just a piece of art and does not represent a share on the OCTL itself. 
+The Open Compensation Token License (OCTL link https://github.com/open-compensation-token-license/license/blob/main/LICENSE.txt) aims to enable massive co-creation and collaboration in a web3/blockchain style. Following the paradigm that "the whole is greater than the sum of its parts" we encourage you to collect unique puzzles to support the OCTL development (link: https://github.com/open-compensation-token-license/octl). Once the puzzle is complete, it represents the bigger picture, and it connects all collectors. You have the special opportunity to own a unique piece of internet history. Therefore, we've created the website https://nftpuzzle.license-token.com/.
+
+Disclaimer: In order to avoid any kind of confusion or misunderstandings: Each puzzle piece is a collectible piece of art and does not represent a share on the OCTL itself.
 
 # Contract reachability
 The OCTL can be reached for testing in different networks.
