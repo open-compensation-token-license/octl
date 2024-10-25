@@ -36,9 +36,8 @@ One can support the OCTL development by donating royalties for stying the OCTL t
 OCTL Project Donation Royalty address (ArbitriumOne/Ethereum mainnet):
 0xf9f943202809545CDd8dcD95b8bBb314f7f8ee85
 
-## Another innovative way
-Will be announced soon.
-
+## OCTL puzzle pieces as NFTs
+Following the famous "the whole is greater than the sum of its parts" phrase we want to encourage you to buy unique puzzles to support the OCTL development. This gives you the chance to own a unique piece of art inspired and powered by the OCTL. Therefore we've created the website https://nftpuzzle.license-token.com/. Feel free to puzzle to support the OCTL but kindly note that each puzzle piece is just a piece of art and does not represent a share on the OCTL itself. 
 
 # Contract reachability
 The OCTL can be reached for testing in different networks.
