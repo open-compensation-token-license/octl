@@ -18,6 +18,10 @@ Our goal is to implement the solution via:
 - The NFTs of contributions can have an owner and a creator allowing developers to create sustainable developments
 - The OCTL provides smart contracts to procure licenses for digital artifacts and to split the income between creators and owners of the different artifacts wherefore an usage license gets procured
 
+**Overview** 
+
+![Open Blockchain Based Licensing](./assets/images/bc-based-licensing.jpg)
+
 # General remarks
 The goal of this project is to leverage NFT technology to allow software developers to earn royalty for their creations.
 We believe that this can make Open Source development more attractive and encourage knowledge sharing and collaboration worldwide.
