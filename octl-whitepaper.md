@@ -2,6 +2,19 @@
 By the license-token.com team
 Version: 0.86
 
+## Table of Contents
+  - [Introduction](#introduction)
+  - [Executive Summary](#executive-summary)
+  - [Motivation](#motivation)
+  - [Proposed Solution: Token-Based Licensing](#proposed-solution-token-based-licensing)
+  - [Tokenomics](#tokenomics)
+  - [Related Work](#related-work)
+  - [Implications and Market Potential](#implications-and-market-potential)
+  - [Roadmap](#roadmap)
+  - [Conclusion](#conclusion)
+  - [FAQ](#faq)
+  - [References](#references)
+
 ## Introduction
 In an era where open-source software (OSS) has become the backbone of technological innovation, contributing to an estimated $8.8 trillion in economic value, we face a paradox. While OSS drives significant cost savings and fosters innovation, the sustainability of these projects is increasingly at risk due to insufficient compensation for developers. 
 
