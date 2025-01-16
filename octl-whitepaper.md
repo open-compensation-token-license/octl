@@ -14,6 +14,7 @@ Version: 0.86
   - [Conclusion](#conclusion)
   - [FAQ](#faq)
   - [References](#references)
+  - [Disclaimer](#disclaimer)
 
 ## Introduction
 In an era where open-source software (OSS) has become the backbone of technological innovation, contributing to an estimated $8.8 trillion in economic value, we face a paradox. While OSS drives significant cost savings and fosters innovation, the sustainability of these projects is increasingly at risk due to insufficient compensation for developers. 
@@ -620,4 +621,5 @@ For such cases, we are working on validation mechanisms. E.g. that story points 
 
 ---
 
-**Disclaimer**: This whitepaper is for informational purposes only and does not constitute an offer or solicitation to buy or sell any securities or tokens or to apply the OCTL license to your project. Always conduct your own due diligence.
+## Disclaimer
+This whitepaper is for informational purposes only and does not constitute an offer or solicitation to buy or sell any securities or tokens or to apply the OCTL license to your project. Always conduct your own due diligence.
