@@ -61,9 +61,9 @@ The key benefits of using blockchain technology for these cases include:
 1. Copy the license text into your project and accept the license
 2. You accept the shoulders your work stands on. Accept the story points of the work you are building (forks, libraries) on for the revenue split.  Otherwise change your dependencies.
 2. Associate story points as efforts to your own work. 
-3. Mint a Code Token for your whole work. 
+3. Mint a Code Token for your work. 
 4. Share the ID of the Code Token for others to reference and to issue Granted Licenses.
-
+ 
 ---
 
 ## Motivation
