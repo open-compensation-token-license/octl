@@ -6,6 +6,7 @@ Version: 0.86
   - [Introduction](#introduction)
   - [Executive Summary](#executive-summary)
   - [Motivation](#motivation)
+  - [How it works](#how-it-works-simplified)
   - [Proposed Solution: Token-Based Licensing](#proposed-solution-token-based-licensing)
   - [Tokenomics](#tokenomics)
   - [Related Work](#related-work)
@@ -52,6 +53,16 @@ The key benefits of using blockchain technology for these cases include:
 - **Micro-Fragments Code Licenses**
 - **Removing the Necessity of Trust in Collaborations between Developers**
 - **Automated Licensing Management**
+
+---
+
+## How it works (simplified)
+
+1. Copy the license text into your project and accept the license
+2. You accept the shoulders your work stands on. Accept the story points of the work you are building (forks, libraries) on for the revenue split.  Otherwise change your dependencies.
+2. Associate story points as efforts to your own work. 
+3. Mint a Code Token for your whole work. 
+4. Share the ID of the Code Token for others to reference and to issue Granted Licenses.
 
 ---
 
