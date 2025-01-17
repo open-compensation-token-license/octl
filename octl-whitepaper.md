@@ -1,6 +1,6 @@
 # Working Whitepaper for License-token.com
 By the license-token.com team
-Version: 0.86
+Version: 0.87
 
 ## Table of Contents
   - [Introduction](#introduction)
@@ -57,13 +57,17 @@ The key benefits of using blockchain technology for these cases include:
 ---
 
 ## How it works (simplified)
+Model software licensing like music industry royalties: 
+Publish your "code" and charge for the commercial plays - also if it is used in recompositions.
 
 1. Copy the license text into your project and accept the license
 2. You accept the shoulders your work stands on. Accept the story points of the work you are building (forks, libraries) on for the revenue split.  Otherwise change your dependencies.
 2. Associate story points as efforts to your own work. 
 3. Mint a Code Token for your work. 
 4. Share the ID of the Code Token for others to reference and to issue Granted Licenses.
- 
+
+![General way of operation](./assets/images/bc-based-licensing.jpg)
+
 ---
 
 ## Motivation
