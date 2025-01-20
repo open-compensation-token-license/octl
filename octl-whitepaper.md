@@ -7,6 +7,7 @@ Version: 0.87
   - [Executive Summary](#executive-summary)
   - [Motivation](#motivation)
   - [How it works](#how-it-works-simplified)
+  - [(Re) Thinking Open Source Openly](#re-thinking-open-source-openly)
   - [Proposed Solution: Token-Based Licensing](#proposed-solution-token-based-licensing)
   - [Tokenomics](#tokenomics)
   - [Related Work](#related-work)
@@ -197,6 +198,70 @@ Traditional software licensing methods suffer several shortcomings:
 
 ---
 
+## (Re) Thinking Open Source Openly
+In order to improve open source, one needs to consider a few factors and understand what it actually means.
+
+Open Source is a not trademarked term that is not legally protected and hence the definitions differ, depending who defines it.
+
+Commonly, [the Open Software Foundations definition or other open source foundations are cited of what is open source and what not](https://opensource.org/osd).
+
+Those foundations are normally supported/sponsored by large corporations. Thoese corporations are also beneficiaries of the commercial exploitation of open source. The amounts that corporations donate to the foundations are commonly not disclosed what makes it ultimatly hard to see or not see a conflict of interest when it comes to open source definitions.
+
+The protection of the term open source happens, out of the lack of a trademark or similar, more or less through a a kind of trolling by people citing the definitions of the foundations.
+
+New types of licensing are not considered to be Open Source by major open source foundations, because they consider the licenses as not free in the spirit of the foundations. 
+
+Ultimatley, it agrguments boil down to the question if the authors of a software should be granted a monopoly in some niche or if they should surrender all rights that everyone else can exppoit their work and open a competition more easily. 
+
+Ultimately, it is non profit against profit and the old debate if open source is capitalistic of socialistic.
+
+
+### Open Source Communism VS Open Source Captalism - A senseless old debate
+Open source software was traditionally viewed through a socialist lens with the advent of the [GNU General Public License (GPL), which prioritizes communal sharing and the collective good of code](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
+[Licenses like MIT](https://opensource.org/licenses/MIT), [Apache, which have not only broadened but also commercialized the scope of open source](https://www.apache.org/licenses/LICENSE-2.0), giving rise to what [can be termed open source capitalism](https://license-token.com).
+
+Likely, we need to (re)consider what "open" and "exploitation" mean and what the goal of "free software" was.
+
+The longest enduring model of open source capitalism has been leveraging donations to support development. There's a stark disparity between the massive cost savings realized by using open source software (estimated at $9 trillion) [and the relatively modest donation costs ($1.7 billion)](https://opensourcefundingsurvey2024.com/), resulting in a capitalist open source return on investment factor of 5,294 times. This economic model shows how open source can be both a source of innovation and a significant economic advantage.
+
+We do not think an open source return on investment factor of 5,294 times is anywhere near socialism.
+
+In the music industry, nobody thinks about socialism or capitalism, and it is widely accepted that artists should have a right to royalties. With the 5,294 times profit in the open source industry, one can argue that open source developers should be in the same position as musicians, being granted similar copyrights.
+
+Therefore, we ask ourselves what exactly in terms of openness is to be considered fair?
+
+
+### New Licenses in the Area of Open Source
+Currently, very interesting new licenses have been created to stop the exploitation of open source software. Clearly, the open source foundations did not endorse them as free, which is not stopping us from introducing them with an open mind.
+
+- **Server Side Public License (SSPL):** Ensures that any server software using the code must share its source code publicly. For commercial use, companies are required to contribute back any changes or improvements, aiming to [prevent large corporations from monopolizing community-developed software](https://en.wikipedia.org/wiki/Server_Side_Public_License), [source](https://www.mongodb.com/legal/licensing/server-side-public-license).
+
+[The community has debated the implications of SSPL extensively](https://opensource.com/article/20/7/sspl), discussing what the downside of this license is. Added code by third parties always flows back to the original author, making forks commercially useless. Therefore, competition is prevented at the price of a monopoly by the original author. This stops the idea of open development and recompositions, which is possible with traditional open source software.
+
+- **Business Source License (BSL):** Allows companies to share software with commercial use restrictions, which then transition to open-source after a set period (often four years). This license provides a temporary monopoly, fostering initial commercial exclusivity [while ensuring eventual open access](https://en.wikipedia.org/wiki/Business_Source_License), [with the licensor having the ability to modify terms](https://www.hashicorp.com/bsl). Each BSL can be customized by the licensor with different terms, such as the length of the proprietary period before the software becomes open source, specific use restrictions, or additional clauses.
+
+[The transition from BSL has been a point of discussion in the tech community](https://blog.hashicorp.com/why-we-re-adopting-the-business-source-license), because it ultimately ensures freely accessible code after a while. The key problem is the lack of standardization. Hence, BSL projects always require additional work of checking specific terms, making it less easy to adopt.
+
+
+### Defining Open Source in a Capitalist Context
+Open Source foundations define software as 'open source' when it [can be exploited for free, both commercially and non-commercially](https://opensource.org/osd).
+
+[New interpretations within open source capitalism have scaled this concept](https://license-token.com) into several layers:
+
+1. **Core Code Visibility** - Only the [core code is accessible, emphasizing transparency, but limiting full access](https://blog.opentap.io/dual-licensing-open-source-software).
+
+2. **Complete Code Access** - The entire [codebase is available for viewing, a practice often referred to as source-available software](https://en.wikipedia.org/wiki/Source-available_software).
+
+3. **Free to Modify and Extend** - [Users can change or extend the code without cost, though commercial usage might be charged](https://faircode.io/#principles), [embodying the spirit of open source for collaborative development](https://github.com/open-compensation-token-license/octl).
+
+4. **Commercial Use for Free** - [Permitting commercial exploitation without a fee, which is a core tenet of Free and Open-Source Software (FOSS)](https://en.wikipedia.org/wiki/Free_and_open-source_software).
+
+Number 3 shows the legal and technological challenge of how one could enable developer collaboration and their compensation when forking code is allowed, but at the same time, commercial use is not.
+
+We believe one can call software open source whenever everybody can modify and extend it according to number 3, provided one solves the organizational, legal, and technological challenges to enable collaborations.
+
+---
 ## Proposed Solution: Token-Based Licensing
 
 We propose the solution to combine three elements to overcome the current problems:
