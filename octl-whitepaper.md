@@ -136,7 +136,7 @@ In many legal systems, creators retain moral rights like the right to be recogni
 
 Across different jurisdictions like Germany, the U.S., India, the UK, and China, there's an underlying principle where employees generally create IP that belongs to their employer, either through copyright or patent law, or by contractual agreement [[Employment Law in Germany: In-depth](https://app.croneri.co.uk/topics/employment-law-germany/core-areas)]. 
 
-This is especially true if the code was developed using company resources or insights that are not publicly available. An employer or another party might later claim rights over the code, leading to legal disputes or the need to remove the code from the project, which could disrupt development and trust in the project's stability. To accept such contributions, one would need to know the employment status or verification of the employer. This means that a contributor to many projects would need to verify with each project that they are even allowed to contribute employer-wise, which becomes very impractical when there are many projects.
+This is [especially true if the code was developed using company resources](http://www.evansdata.com/press/viewRelease.php?pressID=171) or insights that are not publicly available. An employer or another party might later claim rights over the code, leading to legal disputes or the need to remove the code from the project, which could disrupt development and trust in the project's stability. To accept such contributions, one would need to know the employment status or verification of the employer. This means that a contributor to many projects would need to verify with each project that they are even allowed to contribute employer-wise, which becomes very impractical when there are many projects.
 
 Hence, without knowing the contributor, it's challenging to ascertain if the code was developed independently or within the scope of employment, potentially leading to ownership disputes.
 
@@ -209,9 +209,9 @@ Those foundations are normally supported/sponsored by large corporations. Thoese
 
 The protection of the term open source happens, out of the lack of a trademark or similar, more or less through a a kind of trolling by people citing the definitions of the foundations.
 
-New types of licensing are not considered to be Open Source by major open source foundations, because they consider the licenses as not free in the spirit of the foundations. 
+New types of licensing are not considered to be open source by major open source foundations, because they consider the licenses as not free in the spirit of the foundations. 
 
-Ultimatley, it agrguments boil down to the question if the authors of a software should be granted a monopoly in some niche or if they should surrender all rights that everyone else can exppoit their work and open a competition more easily. 
+The key question is if the authors of a software should be granted a monopoly in some niche or if they should surrender all rights that everyone else can exppoit their work and open a competition more easily. 
 
 Ultimately, it is non profit against profit and the old debate if open source is capitalistic of socialistic.
 
