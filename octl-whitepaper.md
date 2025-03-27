@@ -1,5 +1,5 @@
 # Working Whitepaper for License-token.com
-By the license-token.com team
+By the [license-token.com team](https://license-token.com)
 Version: 0.87
 
 ## Table of Contents
@@ -31,20 +31,20 @@ We introduce a new approach to software licensing and code ownership trading thr
 
 The implementation specifically leverages the Ethereum/Arbitrum network and is running there already as minimum viable product. 
 
-This whitepaper outlines the vision, technology, and ecosystem of License-Token.com, aimed at revolutionizing how software royalty rights, copyrights are represented and transferred, and how software licenses are traded, managed, distributed, and validated.
+This whitepaper outlines the vision, [technology, and ecosystem of License-Token.com](https://license-token.com), aimed at revolutionizing how software royalty rights, copyrights are represented and transferred, and how software licenses are traded, managed, distributed, and validated.
 
 This document draws on industry best practices and the following sources for foundational concepts:
 
 ---
 
 ## Executive Summary
-License-Token.com aims to simplify and secure software licensing with token-based, non-fungible tokens (NFT). It represents software licenses and their validity on-chain and tokenizes source code copyright and royalty compensation rights via NFTs, leveraging existing marketplaces and implementations. 
+[License-Token.com aims to simplify and secure software licensing with token-based](https://license-token.com), non-fungible tokens (NFT). It represents software licenses and their validity on-chain and tokenizes source code copyright and royalty compensation rights via NFTs, leveraging existing marketplaces and implementations. 
 
 The feasability of the approach can be verified by a first on-chain version and published source code of it.
 
 This approach not only ensures the authenticity and ownership of source code and royalty receiving rights but also introduces flexibility and new business models for software development. 
 
-Ultimately, the tokenization of licenses and code copyright fosters a new market. 
+Ultimately, the [tokenization of licenses and open source code copyright fosters a new market](https://license-token.com). 
 The key benefits of using blockchain technology for these cases include:
 
 - **10X Scaling opportunity the NFT market through new actors**
