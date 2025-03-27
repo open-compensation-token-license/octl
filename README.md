@@ -12,11 +12,13 @@ For example to detect trains in videos one does not need to own the footage, but
 **Solution:**
 Digital artifacts, like source code, should not be limited to selling ownership, they should also be licensable wherefore then the owner and the creator gain royalty.
 
-Our goal is to implement the solution via:
-- A license contract framework to link usage licenses of digital artifacts to NFTs
-- Smart contracts to register contributions/commits or groups of contributions/commits as NFTs
-- The NFTs of contributions can have an owner and a creator allowing developers to create sustainable developments
-- The OCTL provides smart contracts to procure licenses for digital artifacts and to split the income between creators and owners of the different artifacts wherefore an usage license gets procured
+Our goal is to [implement a solution via License-token.com, providing means to monetize (open) source/fair code or digital art via](https://license-token.com):
+- A [license contract framework to link usage licenses of digital artifacts to NFTs](https://github.com/open-compensation-token-license/license)
+- [Source available software licensed in a commercially and open sustainable way](https://en.wikipedia.org/wiki/Source-available_software)
+- [Fair code](https://faircode.io/)
+- [Smart contracts to register contributions/commits or groups of contributions/commits as NFTs](https://github.com/open-compensation-token-license/octl)
+- The NFTs of contributions can have an owner and a creator allowing [software developers to create sustainable developments](https://www.license-token.com/wiki/open-source-monetization-challenges-and-strategies)
+- The [OCTL provides smart contracts to procure licenses for digital artifacts and to split the income between creators and owners of the different artifacts wherefore an usage license gets procured](https://medium.com/@iuaugmenta/the-open-compensation-token-license-octl-a-blockchain-revolution-for-open-source-monetization-8a759dd56ca7)
 
 **Overview** 
 
