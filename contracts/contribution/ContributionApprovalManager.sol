@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: UNLICENSE
 // Copyright 2024, Tim Frey, Christian Schmitt
 // License Open Compensation Token License https://github.com/open-compensation-token-license/license
-// @octl.sid 7dec4673-5559-4895-9714-1cdd61a58b57
-
+// OCTL artifact group: octl-sid:7dec4673-5559-4895-9714-1cdd61a58b57
 pragma solidity ^0.8.0;
 
 import "./IERC6464.sol";
@@ -43,9 +42,9 @@ contract ContributionApprovalManager is
     ILicensable _associatedToken;
 
     function wire(
-        ILicensable associatedToken
+        address associatedToken
     ) external onlyRole(DEFAULT_ADMIN_ROLE) {
-        _associatedToken = associatedToken;
+        _associatedToken = ILicensable(associatedToken);
     }
 
     /**

@@ -1,15 +1,14 @@
 // SPDX-License-Identifier: UNLICENSE
 // Copyright 2024, Tim Frey, Christian Schmitt
 // License Open Compensation Token License https://github.com/open-compensation-token-license/license
-// @octl.sid 7dec4673-5559-4895-9714-1cdd61a58b57
-
+// OCTL artifact group: octl-sid:7dec4673-5559-4895-9714-1cdd61a58b57
 pragma solidity ^0.8.20;
 
 import "./ILicensable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol";
 import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
-
+import "../octl.sol";
 abstract contract ALicenseableTokenBase is
     ContextUpgradeable,
     ERC165Upgradeable,
@@ -19,10 +18,10 @@ abstract contract ALicenseableTokenBase is
     address internal _applicationLicensesContract;
 
     uint public constant confirmationDepth = 5;
-    uint public constant _maxStoryPointsExtensions = 100 * 100;
+    uint public constant _maxStoryPointsExtensions = 100 * _OneStoryPoint;
 
     // maximum story points for initial commits
-    uint public constant _maxStoryPointsInitial = 10000 * 100;
+    uint public constant _maxStoryPointsInitial = 10000 * _OneStoryPoint;
 
     uint256 internal _nextTokenId;
 
@@ -36,9 +35,13 @@ abstract contract ALicenseableTokenBase is
     struct ContributionDetails {
         bytes32 contributionType;
         // the URI of the contribution. e.g. the commit id or similar
+        // cannot be changed after setup is completed
         bytes contributionUri;
-        /**The URL where one can fine the uri if not given - can be emtpy if the URI is clear */
+      
+
+        /*DEPRECATED USE retrivalURLs*/
         bytes retrivalURL;
+
         // immutable for user. but not for the contact - e.g. when one NFT belongs to another the adresses can be modified
         mapping(bytes32 => address) incomeStreams;
         /*if of the "owning" token. 
@@ -82,9 +85,17 @@ abstract contract ALicenseableTokenBase is
         // can maximum be 100 story points for contributions having parents
         // for contributions without parents it is 10000 (becasue complete projects can be commit like this)
         uint256 storyPoints;
+
         // indicates the setup is completed and certain changes cannot be done anymore
         bool setupCompleted;
-        // add here the posibility to suspend a token
+        // add here the posibility to suspend a token based on cropyright violation reporting
+                
+        /**The URL where one can fine the uri if not given - can be emtpy if the URI is clear. 
+         * Keeps a history of updated URLs in case it is updated._defaultRoyaltyCreator.
+         * The latest index is always the actual one uri.
+         * TODO: Consider adding wildcards to reference the contributionUri in the url
+         *  */
+        bytes[] retrivalURLs;
     }
 }
 

@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: UNLICENSE
 // Copyright 2024, Tim Frey, Christian Schmitt
 // License Open Compensation Token License https://github.com/open-compensation-token-license/license
-// @octl.sid 7dec4673-5559-4895-9714-1cdd61a58b57
-
+// OCTL artifact group: octl-sid:7dec4673-5559-4895-9714-1cdd61a58b57
 pragma solidity ^0.8.20;
 
 interface ILicensable {
@@ -35,6 +34,7 @@ interface ILicensable {
     function ownerOf(
         uint256 tokenId
     ) external view returns (address topNodeOwner);
+
     /**The creator of a specific token */
     function creatorOf(uint256 tokenid) external view returns (address creator);
 
@@ -69,6 +69,7 @@ interface ILicensable {
             uint96[] memory sharefactor,
             uint96 demoninator
         );
+
     /**Returns the royalty factor that a creator earns form each transacation */
     function getCreatorBenefitFactor(
         uint256 tokenid
@@ -123,4 +124,28 @@ interface ILicensable {
     function unNest(uint256 childid) external;
 
     function nest(uint256 tokenId, uint256 destinationId) external;
+
+    function mintSingle(
+        bytes calldata contributionUri,
+        bytes calldata retrivalURL,
+        address owner,
+        address creator,
+        uint256[] calldata depedentContributions,
+        uint storyPoints
+    ) external;
+
+    function mintNested(
+        bytes calldata contributionUri,
+        bytes calldata retrivalURL,
+        address owner,
+        address creator,
+        uint256[] calldata depedentContributions,
+        uint storyPoints,
+        uint256 parent
+    ) external;
+
+    function addDependentContribution(
+        uint256 tokenId,
+        uint256 dependentContribution
+    ) external;
 }

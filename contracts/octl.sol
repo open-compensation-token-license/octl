@@ -1,20 +1,30 @@
 // SPDX-License-Identifier: UNLICENSE
-// Copyright 2024, Tim Frey, Christian Schmitt 
+// Copyright 2024, Tim Frey, Christian Schmitt
 // License Open Compensation Token License https://github.com/open-compensation-token-license/license
-// @octl.sid 7dec4673-5559-4895-9714-1cdd61a58b57
-
+// OCTL artifact group: octl-sid:7dec4673-5559-4895-9714-1cdd61a58b57
 pragma solidity ^0.8.20;
 
 /*Constants and other global OCTL specifica */
+function getDefaultLicenses() pure returns (uint256[] memory defaultLicenses) {
+    uint256[] memory licenses = new uint256[](1);
+    licenses[0] = 10;
+    return licenses;
+}
 
 struct BeneficiaryShare {
     address account;
     uint256 value;
 }
 uint96 constant octlTradeRoyatypercent = 1;
+uint96 constant _OneStoryPoint = 100;
+uint96 constant _WorkWeekStoryPoint = 100 * 5 * 8;
+uint96 constant _HardWeekStoryPoint = 100 * 7 * 10;
+uint96 constant _NormalYearStoryPoint = 52 * _WorkWeekStoryPoint;
+
 uint96 constant _OnePercent = 10000;
-uint96 constant _HundredPercent = 1000000;
+uint96 constant _HundredPercent = _OnePercent * 100;
 uint96 constant _defaultRoyaltyCreator = _OnePercent * 2;
+uint96 constant _DevelopmentStoriesRoyalty = _OnePercent * 5;
 // Roles
 bytes32 constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
 bytes32 constant MINTER_ROLE = keccak256("MINTER_ROLE");
@@ -54,4 +64,7 @@ bytes32 constant InstallationDetail_contract_value_GRANTEDLICENSE = keccak256(
 );
 bytes32 constant InstallationDetail_contract_value_LICENSE = keccak256(
     "LICENSE"
+);
+bytes32 constant  InstallationDetail_contract_value_DevelopmentStories = keccak256(
+    "DEVELOPMENTSTORIES"
 );

@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: UNLICENSE
 // Copyright 2024, Tim Frey, Christian Schmitt
 // License Open Compensation Token License https://github.com/open-compensation-token-license/license
-// @octl.sid 7dec4673-5559-4895-9714-1cdd61a58b57
-
+// OCTL artifact group: octl-sid:7dec4673-5559-4895-9714-1cdd61a58b57
 pragma solidity ^0.8.20;
 
 import "../octl.sol";
@@ -70,7 +69,7 @@ abstract contract AMintAndTransfer is
         bytes calldata contributionUri,
         bytes calldata retrivalURL,
         uint storyPoints,
-        address[] calldata accounts,
+        address[] memory accounts,
         uint96 creatorRoyalty
     ) internal {
         require(
@@ -82,12 +81,10 @@ abstract contract AMintAndTransfer is
         );
         _tokenDetails[tokenId].storyPoints = storyPoints;
         _tokenDetails[tokenId].creatorRoyalty = creatorRoyalty;
-        _tokenDetails[tokenId].creators = accounts[0];
-        _tokenDetails[tokenId].creatorsBeneficiary = (accounts.length > 1)
-            ? (accounts[1])
-            : address(0);
+        _tokenDetails[tokenId].creators = accounts[2];
+        _tokenDetails[tokenId].creatorsBeneficiary = accounts[3];
 
-        _tokenDetails[tokenId].retrivalURL = retrivalURL;
+        _tokenDetails[tokenId].retrivalURLs.push( retrivalURL);
         _setupContributionURI(tokenId, contributionUri);
 
         _tokenDetails[tokenId].setupCompleted = true;

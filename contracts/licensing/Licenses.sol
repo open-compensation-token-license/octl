@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: UNLICENSE
 // Copyright 2024, Tim Frey, Christian Schmitt
 // License Open Compensation Token License https://github.com/open-compensation-token-license/license
-// @octl.sid 7dec4673-5559-4895-9714-1cdd61a58b57
-
+// OCTL artifact group: octl-sid:7dec4673-5559-4895-9714-1cdd61a58b57
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
@@ -43,7 +42,7 @@ contract Licenses is
         address minter,
         address upgrader
     ) public initializer {
-        __ERC721_init("Licenses", "MTK");
+        __ERC721_init("Licenses", "LC");
         __ERC721URIStorage_init();
         __ERC721Pausable_init();
         __AccessControl_init();
@@ -54,6 +53,8 @@ contract Licenses is
         _grantRole(PAUSER_ROLE, pauser);
         _grantRole(MINTER_ROLE, minter);
         _grantRole(UPGRADER_ROLE, upgrader);
+        // theoretically not required just to be certain that it is remember that this never should be changed during refactorings
+        if (_nextTokenId == 0) _nextTokenId = 10000;
     }
 
     function pause() public onlyRole(PAUSER_ROLE) {
@@ -185,6 +186,36 @@ contract Licenses is
         );
     }
 
+    // only an admin can freely choose token IDs
+    // used for license numbers under 10000
+    function setupOCTLLicenses(
+        address to,
+        bytes memory licenseAgreementURI,
+        address nominatedBeneficiary,
+        uint96 licenseCompensation,
+        uint256 tokenId
+    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        _safeMint(to, tokenId);
+        _setTokenURI(tokenId, string(licenseAgreementURI));
+        _licenseDetails[tokenId].licenseAgreementURI = licenseAgreementURI;
+        _licenseDetails[tokenId].nominatedBeneficiary = nominatedBeneficiary;
+        _licenseDetails[tokenId].licenseCompensation = licenseCompensation;
+    }
+
+    function updateLicenseAgreementURI(
+        uint256 tokenId,
+        bytes calldata newRetrivalURL
+    ) external {
+        require(
+            ownerOf(tokenId) == _msgSender() ||
+                isApprovedForAll(ownerOf(tokenId), _msgSender()),
+            "not authorized"
+        );
+        _setTokenURI(tokenId, string(newRetrivalURL));
+        _licenseDetails[tokenId].licenseAgreementURI = newRetrivalURL;
+    }
+
+    // normal minter gets automatically a new token id assigned
     function mintLicense(
         address to,
         bytes memory licenseAgreementURI,
@@ -204,9 +235,11 @@ contract Licenses is
         _licenseDetails[_nextTokenId]
             .nominatedBeneficiary = nominatedBeneficiary;
         _licenseDetails[_nextTokenId].licenseCompensation = licenseCompensation;
-        _licenseDetails[_nextTokenId].licenseDirective = licenseDirective;
+        if (licenseDirective.length != 0)
+            _licenseDetails[_nextTokenId].licenseDirective = licenseDirective;
     }
 
+    // allows to set a specific compensation factor for a license creator...
     function setLicenseApplicationCompensation(
         uint256 tokenId,
         uint96 licenseCompensation
@@ -221,7 +254,7 @@ contract Licenses is
 
     function getLicenseApplicationCompensation(
         uint256 tokenId
-    ) external returns (uint96 licenseCompensation) {
+    ) external view returns (uint96 licenseCompensation) {
         return _licenseDetails[tokenId].licenseCompensation;
     }
 
@@ -275,13 +308,33 @@ contract Licenses is
         );
     }
 
+    bool lock;
+
     function procureLicense(
+        address to,
+        uint256[] calldata contributions,
+        int256[] calldata variables,
+        uint8 isoCountryLicensee
+    ) public payable returns (uint256 grantedLicense) {
+        return
+            procureLicenseExtended(
+                to,
+                10,
+                contributions,
+                variables,
+                isoCountryLicensee
+            );
+    }
+
+    function procureLicenseExtended(
         address to,
         uint256 license,
         uint256[] calldata contributions,
         int256[] calldata variables,
         uint8 isoCountryLicensee
-    ) external payable returns (uint256 grantedLicense) {
+    ) public payable returns (uint256 grantedLicense) {
+        require(!lock, "reentrance");
+        lock = true;
         uint256 amountleft = msg.value;
 
         // get the costs, beneficiaries and associated contributions for which a granted license shall be issued
@@ -303,6 +356,7 @@ contract Licenses is
             license,
             contributorCompensation
         );
+
         // update the remainder values
         amountleft = amountleft - amountwiredLicenseCreators;
         contributorCompensation =
@@ -319,11 +373,16 @@ contract Licenses is
 
         // wire the leftover breakcrumbs to the OCTL team
         amountleft = _paymentSplitter._transfer{value: amountleft}(
-            this.ownerOf(_OCTLLICENCEID),
+            (
+                (_licenseDetails[_OCTLLICENCEID].nominatedBeneficiary !=
+                    address(0))
+                    ? _licenseDetails[_OCTLLICENCEID].nominatedBeneficiary
+                    : this.ownerOf(_OCTLLICENCEID)
+            ),
             amountleft,
             false
         );
-
+        lock = false;
         //issue the granted license with the details
         return
             _grantedLicenses.issueGrantedLicense(
@@ -361,15 +420,18 @@ contract Licenses is
             .licenseCompensation * procuredLicenseCosts) / _HundredPercent;
         procuredLicenseCosts = procuredLicenseCosts - licenseApplication;
         // TODO add later creater license compensation like for any other contribution
-        address beneficiary = _licenseDetails[licenseid].nominatedBeneficiary !=
-            address(0)
-            ? _licenseDetails[licenseid].nominatedBeneficiary
-            : this.ownerOf(licenseid);
-        _paymentSplitter._transfer{value: licenseApplication}(
-            beneficiary,
-            licenseApplication,
-            false
+        address beneficiary = (
+            (_licenseDetails[licenseid].nominatedBeneficiary != address(0))
+                ? _licenseDetails[licenseid].nominatedBeneficiary
+                : this.ownerOf(licenseid)
         );
+        if (licenseApplication != 0) {
+            _paymentSplitter._transfer{value: licenseApplication}(
+                beneficiary,
+                licenseApplication,
+                false
+            );
+        }
         return (licenseApplication);
     }
 
@@ -456,7 +518,7 @@ contract Licenses is
     /**
      * Returns the latest price
      */
-    function getLatestETHPriceInUSD() internal view returns (uint) {
+    function getLatestETHPriceInUSD() internal pure returns (uint) {
         // (
         //     uint80 roundId,
         //     int256 answer,

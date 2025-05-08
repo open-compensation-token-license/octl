@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: UNLICENSE
 // Copyright 2024, Tim Frey, Christian Schmitt
 // License Open Compensation Token License https://github.com/open-compensation-token-license/license
-// @octl.sid 7dec4673-5559-4895-9714-1cdd61a58b57
-
+// OCTL artifact group: octl-sid:7dec4673-5559-4895-9714-1cdd61a58b57
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol";
@@ -15,7 +14,7 @@ import "./ContributionRoyaltyReceiver.sol";
 import "./ULicensableContributionMintAndTransfer.sol";
 import "../octl.sol";
 
-/* TODO: Check and callaborate here:
+/* TODO: Check and collaborate here:
  also gasless miniting is an option: ERC-4337
  see also https://ethereum-magicians.org/t/eip-6059-parent-governed-nestable-non-fungible-tokens/11914/12
  testing https://medium.com/buildbear/implementing-nft-royalties-a-practical-tutorial-on-erc721-c-for-artists-and-developers-981ab13eeaa5
@@ -54,41 +53,93 @@ contract LicensableContributions is
     }
 
     function wire(
-        PaymentReceiverFactory paymentReceiverProxyFactory,
+        address paymentReceiverProxyFactory,
         address applicationLicensesContract,
-        ContributorReputations contributorReputation,
-        ContributionRoyaltyReceiver contributionTradeRoyaltyReceiverCTR,
-        ContributionApprovalManager contributionApprovalManager
+        address contributorReputation,
+        address contributionTradeRoyaltyReceiverCTR,
+        address contributionApprovalManager
     ) public onlyRole(UPGRADER_ROLE) {
-        _paymentReceiverProxyFactory = paymentReceiverProxyFactory;
-        _contributorReputation = contributorReputation;
-        _contributionTradeRoyaltyReceiverCTR = contributionTradeRoyaltyReceiverCTR;
+        _paymentReceiverProxyFactory = PaymentReceiverFactory(
+            paymentReceiverProxyFactory
+        );
+        _contributorReputation = ContributorReputations(contributorReputation);
+        _contributionTradeRoyaltyReceiverCTR = ContributionRoyaltyReceiver(
+            contributionTradeRoyaltyReceiverCTR
+        );
         _applicationLicensesContract = applicationLicensesContract;
-        _contributionApprovalManager = contributionApprovalManager;
+
+        _contributionApprovalManager = ContributionApprovalManager(
+            contributionApprovalManager
+        );
     }
 
     ///// MINTING
-
-    /**
-     * @dev Creates `amount` tokens of token type `id`, and assigns them to `to`.
-     *
-     */
     function mintSingle(
         bytes calldata contributionUri,
         bytes calldata retrivalURL,
-        address[] calldata accounts,
-        uint256[] calldata applicationLicenses,
+        address owner,
+        address creator,
+        uint256[] calldata depedentContributions,
+        uint storyPoints
+    ) external {
+//        _checkRole(MINTER_ROLE);
+        address[] memory accounts = new address[](4);
+        accounts[0] = owner;
+        accounts[2] = creator;
+
+        mintExtended(
+            contributionUri,
+            retrivalURL,
+            accounts,
+            depedentContributions,
+            storyPoints,
+            0
+        );
+    }
+
+    function mintNested(
+        bytes calldata contributionUri,
+        bytes calldata retrivalURL,
+        address owner,
+        address creator,
+        uint256[] calldata depedentContributions,
+        uint storyPoints,
+        uint256 parent
+    ) external {
+//        _checkRole(MINTER_ROLE);
+        address[] memory accounts = new address[](4);
+        accounts[0] = owner;
+        accounts[2] = creator;
+
+        mintExtended(
+            contributionUri,
+            retrivalURL,
+            accounts,
+            depedentContributions,
+            storyPoints,
+            parent
+        );
+    }
+
+    /**
+     *
+     *
+     */
+    function mintExtended(
+        bytes calldata contributionUri,
+        bytes calldata retrivalURL,
+        address[] memory accounts,
         uint256[] calldata depedentContributions,
         uint storyPoints,
         uint256 nestParent
-    ) external {
-        _checkRole(MINTER_ROLE);
+    ) public {
+//        _checkRole(MINTER_ROLE);
 
         uint256 tokenId = _mintBasic(
             _msgSender(),
             accounts[0],
             accounts[1],
-            applicationLicenses,
+            getDefaultLicenses(),
             depedentContributions,
             nestParent
         );
@@ -98,9 +149,40 @@ contract LicensableContributions is
             contributionUri,
             retrivalURL,
             storyPoints,
-            accounts[2:],
+            accounts,
             _defaultRoyaltyCreator
         );
+    }
+
+    function updateRetrivalURL(
+        uint256 tokenId,
+        bytes calldata newRetrivalURL
+    ) external  onlyRole(DEFAULT_ADMIN_ROLE){
+        // TODO enable it for all and only authorized when tested
+        // require(ownerOf( tokenId)==_msgSender() ||
+        //     _contributionApprovalManager.isApprovedFor(_msgSender(), tokenId),
+        //     "not approved"
+        // );
+        _tokenDetails[tokenId].retrivalURLs.push(newRetrivalURL);
+    }
+
+    function addDependentContribution(
+        uint256 tokenId,
+        uint256 dependentContribution
+    ) external {
+        require(ownerOf( tokenId)==_msgSender() ||
+            _contributionApprovalManager.isApprovedFor(_msgSender(), tokenId),
+            "not approved"
+        );
+        _tokenDetails[tokenId].dependentContributions.push(
+            dependentContribution
+        );
+    }
+
+    function getRetrivalURLHistory(
+        uint256 tokenId
+    ) external view returns (bytes[] memory urlHistory) {
+        return _tokenDetails[tokenId].retrivalURLs;
     }
 
     function unNest(uint256 childid) external {

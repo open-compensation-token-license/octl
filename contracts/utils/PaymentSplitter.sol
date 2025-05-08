@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: UNLICENSE
 // Copyright 2024, Tim Frey, Christian Schmitt
 // License Open Compensation Token License https://github.com/open-compensation-token-license/license
-// @octl.sid 7dec4673-5559-4895-9714-1cdd61a58b57
-
+// OCTL artifact group: octl-sid:7dec4673-5559-4895-9714-1cdd61a58b57
 pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
@@ -71,7 +70,7 @@ contract PaymentSplitter is AccessControlUpgradeable, UUPSUpgradeable {
         uint256 amount,
         bool nonSuccessRevert
     ) public payable returns (uint256 amountTransferred) {
-        require(!lock);
+        require(!lock,"reentrance");
         lock = true;
 
         // Ensure the transaction has enough gas , gas: gasleft()

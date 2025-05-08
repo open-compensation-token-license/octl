@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSE
 // Copyright 2024, Tim Frey, Christian Schmitt
 // License Open Compensation Token License https://github.com/open-compensation-token-license/license
-// @octl.sid 7dec4673-5559-4895-9714-1cdd61a58b57
+// OCTL artifact group: octl-sid:7dec4673-5559-4895-9714-1cdd61a58b57
 
 pragma solidity ^0.8.20;
 
@@ -40,12 +40,12 @@ contract ContributionRoyaltyReceiver is
     }
 
     function wire(
-        ILicensable contributionToken,
-        PaymentSplitter paymentSplitter,
+        address contributionToken,
+        address paymentSplitter,
         address octladdress
     ) external onlyRole(DEFAULT_ADMIN_ROLE) {
-        _contributionToken = contributionToken;
-        _paymentSplitter = paymentSplitter;
+        _contributionToken = ILicensable(contributionToken);
+        _paymentSplitter = PaymentSplitter(paymentSplitter);
         _octladdress = octladdress;
     }
 
@@ -57,12 +57,8 @@ contract ContributionRoyaltyReceiver is
         uint256 sourceId,
         InstallationDetail[] memory,
         uint256 value,
-        address token // add the license fee
+        address token // currently there is only one licenseable token upgraded later
     ) external payable override {
-        // resolve address to contract
-        // gets the token of the receiver and resolves the owner
-        uint256 _sourceId = sourceId;
-
         uint256 octlValue = (value * octlTradeRoyatypercent) / _HundredPercent;
         uint256 creatorvalue = value - octlValue;
         if (octlValue != 0) {
