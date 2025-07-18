@@ -287,7 +287,7 @@ We propose the solution to combine three elements to overcome the current proble
 
 #### Code Tokens / Copyright Licensables:
 ![Code is tokenized by minting NFTs for unique URIs pointing to code](./assets/images/tokenizingcode.png)
-Code tokens are NFTs created by a smart contract and represented as extended ERC-721 NFTs. They are used to "link" dependent code artifacts. This linking can be to parent commits but also libraries that are pulled by dependency management, which is not viewable by git history. To do so, the Code Tokens support different code artifact "Contribution URIs" to represent groups of commits, the usage of libraries, etc..
+[Code tokens are NFTs created by a smart contract and represented as extended ERC-721 NFTs](https://www.youtube.com/watch?v=p_Gb-jnxozI). They are used to "link" dependent code artifacts. This linking can be to parent commits but also libraries that are pulled by dependency management, which is not viewable by git history. To do so, the Code Tokens support different code artifact "Contribution URIs" to represent groups of commits, the usage of libraries, etc..
 ![Code is tokenized by minting NFTs for unique URIs pointing to code](./assets/images/code-token-referencing.png)
 They have the following features:
 
